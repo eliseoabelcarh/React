@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Uso bootstrap para algo de estilos -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    
+    <!-- Se requiere compilar con Babel  -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+     
+    <!-- Se requiere CDN de React  -->
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    
+    <title>Document</title>
+</head>
+<body>
+
+
+<!--Se carga el componente-->  
+
+    <div id="app"></div>
+
+
+<!--Se carga el babel para compilar el script-->  
+<script type="text/babel">
+
+class App extends React.Component {
+
+    initialState = {
+        nombre: ''
+    }
+
+    handleSubmit = (e) =>{
+        e.preventDefault();
+    }
+    handleChange = (e) => {
+        this.setState({
+            ...this.state,
+            nombre: e.target.value
+        });
+    }
+    constructor(props){
+        super(props);
+        this.state = this.initialState;
+    }
+
+
+    render(){
+        return(
+            <form onSubmit = {this.handleSubmit}>
+                <h3>{this.state.nombre}</h3>
+                <label>
+                  <input type="text" placeholder="Nombre" onChange = {this.handleChange}/>
+               </label>
+                 <input type="submit" value="Submit" />
+            </form>
+        )
+    }
+}
+
+ReactDOM.render(<App />,document.getElementById('app'));
+
+</script>
+
+</body>
+</html>
